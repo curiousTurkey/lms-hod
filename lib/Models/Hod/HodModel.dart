@@ -16,7 +16,7 @@ class HodModel {
     required this.userId,
     required this.deptName,
     required this.contactNo,
-    this.imageUrl="https://",
+    this.imageUrl="notset",
     this.userType="hod"});
 
   Map<String , dynamic> toJson() => {

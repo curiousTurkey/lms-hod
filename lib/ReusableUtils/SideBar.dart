@@ -71,7 +71,7 @@ class _SideBarState extends State<SideBar> {
                   child: CircleAvatar(
                     backgroundColor: Colors.white10,
                     radius: screenLayout(120, context),
-                    backgroundImage: NetworkImage(_hodModel.imageUrl),
+                    backgroundImage: (_hodModel.imageUrl=="notset")?null:NetworkImage(_hodModel.imageUrl),
                     child: (_hodModel.imageUrl=="notset")?Initicon(
                       borderRadius: BorderRadius.circular(50),
                       text: _hodModel.fullName,

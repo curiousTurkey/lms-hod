@@ -37,7 +37,7 @@ class AuthMethods {
           userId: userId, 
           deptName: deptName, 
           contactNo: contactNo);
-      await _firestore.collection('users').doc(userId).collection('temptest').doc(userId).set(hodModel.toJson());
+      await _firestore.collection('users').doc(userId).set(hodModel.toJson());
       finalResult = "success";
       
     }on FirebaseAuthException catch(error){
