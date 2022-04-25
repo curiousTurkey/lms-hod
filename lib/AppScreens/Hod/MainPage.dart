@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lm_hod/AppScreens/Hod/Profile.dart';
 import 'package:lm_hod/Providers/Hod%20provider/HodProvider.dart';
 import 'package:lm_hod/ReusableUtils/Colors.dart' as color_mode;
 import 'package:provider/provider.dart';
@@ -54,6 +55,7 @@ class _MainPageState extends State<MainPage> {
           },
           children: const [
             HomeScreen(),
+            ProfilePage(),
                    ],
         ),
         bottomNavigationBar: BottomNavigationBar(

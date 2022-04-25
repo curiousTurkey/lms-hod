@@ -74,7 +74,7 @@ class _SignupScreenState extends State<SignupScreen> {
             color: color_mode.primaryColor,
             image: const DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage('assets/background/background.jpg'))),
+                image: AssetImage('assets/background/bg.jpg'))),
         height: double.maxFinite,
         width: double.maxFinite,
         child: SingleChildScrollView(
@@ -83,30 +83,31 @@ class _SignupScreenState extends State<SignupScreen> {
             children: [
               resize.verticalSpace(0, context),
               Container(
-                margin: EdgeInsets.all(resize.screenLayout(10, context)),
+                margin: EdgeInsets.only(bottom:resize.screenLayout(70, context),left: resize.screenLayout(00, context)),
                 child: Text(
-                  'LMS - Hod \n   Sign Up',
+                  'LMS - HoD',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: color_mode.secondaryColor,
-                      fontSize: resize.screenLayout(40, context)),
+                      fontSize: resize.screenLayout(45, context)),
                 ),
               ),
+              SizedBox(height: resize.screenLayout(30, context),),
               SingleChildScrollView(
                 child: Container(
-                  height: heightwidth.getHeight(context) / 1.9,
+                  height: heightwidth.getHeight(context) / 1.798,
                   width: heightwidth.getWidth(context) -
                       resize.screenLayout(47, context),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft:
-                            Radius.circular(resize.screenLayout(40, context)),
+                            Radius.circular(resize.screenLayout(20, context)),
                         topRight:
-                            Radius.circular(resize.screenLayout(40, context)),
+                            Radius.circular(resize.screenLayout(20, context)),
                         bottomLeft:
-                            Radius.circular(resize.screenLayout(40, context)),
+                            Radius.circular(resize.screenLayout(20, context)),
                         bottomRight:
-                            Radius.circular(resize.screenLayout(40, context)),
+                            Radius.circular(resize.screenLayout(20, context)),
                       ),
                       boxShadow: const [
                         BoxShadow(
@@ -115,7 +116,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           blurRadius: 4,
                         ),
                       ],
-                      color: color_mode.spclColor.withOpacity(.45)),
+                      color: color_mode.primaryColor,
+                  ),
                   child: ListView(
                     padding: EdgeInsets.zero,
                     children: [
@@ -157,14 +159,23 @@ class _SignupScreenState extends State<SignupScreen> {
                           labelText: 'Contact No',
                           hintText: 'ex 9192936785'),
                       //need to add dept
-                      resize.verticalSpace(20, context),
+                      resize.verticalSpace(30, context),
                       Container(
                         height: resize.screenLayout(70, context),
                         padding: EdgeInsets.all(resize.screenLayout(10, context)),
                         decoration: const BoxDecoration(
                         ),
                         child: DropdownButton<String>(
-                          focusColor: color_mode.secondaryColor2,
+                          dropdownColor: color_mode.primaryColor,
+                          focusColor: color_mode.primaryColor,
+                          style: TextStyle(fontSize: resize.screenLayout(30, context),
+                            color: color_mode.secondaryColor,
+                            fontWeight: FontWeight.w600
+                          ),
+                          borderRadius: BorderRadius.circular(resize.screenLayout(20, context)),
+                          iconDisabledColor: Colors.grey,
+                          iconEnabledColor: color_mode.secondaryColor,
+                          icon: const Icon(Icons.arrow_downward_rounded),
                           enableFeedback: true,
                           hint: const Text('Select Department'),
                           isExpanded: true,
@@ -192,11 +203,13 @@ class _SignupScreenState extends State<SignupScreen> {
                           _confirmPasswordController.text.isEmpty ||
                           value.isEmpty
                       ){
-                        snackBar(content: 'Provide all fields', duration: 1500, context: context);
+                        snackBar(content: 'Provide all fields.', duration: 1500, context: context);
                       }
                       else if(_passwordController.text != _confirmPasswordController.text){
-                        snackBar(content: 'Confirm password mismatch', duration: 1500, context: context);
+                        snackBar(content: 'Confirm password mismatch.', duration: 1500, context: context);
                       }
+                      else if(_contactNoController.text.length != 10){
+                      snackBar(content: 'Provide valid phone number.', duration: 1500, context: context);}
                       else {
                         signupHod();
                       }
@@ -223,7 +236,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 children: [
                   Text(
                     "Already have account?",
-                    style: TextStyle(color: color_mode.unImportant),
+                    style: TextStyle(color: color_mode.spclColor),
                   ),
                   resize.horizontalSpace(10, context),
                   InkWell(
@@ -231,12 +244,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       Navigator.pushReplacement(context,
                           CustomPageRouteSide(child: const LoginScreen()));
                     },
-                    splashColor: color_mode.secondaryColor2,
+                    splashColor: color_mode.tertiaryColor,
                     child: Text(
                       'Log in',
                       style: TextStyle(
                           fontSize: resize.screenLayout(28, context),
-                          color: color_mode.secondaryColor2,
+                          color: color_mode.spclColor2,
                           fontWeight: FontWeight.bold),
                     ),
                   ),

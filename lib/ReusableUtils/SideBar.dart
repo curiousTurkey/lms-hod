@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lm_hod/AppScreens/Hod/StaffRecruit.dart';
+import 'package:lm_hod/AppScreens/Hod/TodayLeaveApplicants.dart';
 import 'package:lm_hod/Models/Hod/HodModel.dart';
 import 'package:lm_hod/Providers/Hod%20provider/HodProvider.dart';
 import 'package:lm_hod/ReusableUtils/LogoutDialog.dart';
@@ -48,13 +49,8 @@ class _SideBarState extends State<SideBar> {
           SizedBox(
             height: screenLayout(340, context),
             child: UserAccountsDrawerHeader(
-                decoration: const BoxDecoration(
-                    image:  DecorationImage(
-                        image: AssetImage('assets/background/image.jpg'),
-                        fit: BoxFit.cover,
-                        isAntiAlias: true,
-                        filterQuality: FilterQuality.high
-                    )
+                decoration:  BoxDecoration(
+                    color: color_mode.spclColor2.withOpacity(.5),
                 ),
                 accountName: Text(_hodModel.fullName,
                   style: TextStyle(color: color_mode.tertiaryColor,
@@ -113,7 +109,10 @@ class _SideBarState extends State<SideBar> {
           sidebarListTile(
               title: 'Leave Applicants',
               leadingIcon: Icons.newspaper_outlined,
-              onTap: (){}),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, CustomPageRouteSide(child: const LeaveApplicants()));
+              }),
           sidebarListTile(
               title: 'Staff Leave History',
               leadingIcon: Icons.history,

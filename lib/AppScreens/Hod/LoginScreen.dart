@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
           color: color_mode.primaryColor,
           image: const DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage('assets/background/background.jpg'))),
+              image: AssetImage('assets/background/bg.jpg'))),
       height: double.maxFinite,
       width: double.maxFinite,
       child: SingleChildScrollView(
@@ -81,16 +81,19 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.all(resize.screenLayout(70, context)),
+              alignment: Alignment.topLeft,
+              margin: EdgeInsets.only(bottom:resize.screenLayout(70, context),left: resize.screenLayout(50, context)),
               child: Text(
-                'LMS - Hod',
+                'LMS - HoD',
                 style: TextStyle(
+                  letterSpacing: 2,
                     fontWeight: FontWeight.bold,
                     color: color_mode.secondaryColor,
-                  fontSize: resize.screenLayout(40, context)
+                  fontSize: resize.screenLayout(45, context)
                 ),
               ),
             ),
+            resize.verticalSpace(70, context),
             Container(
               height: heightwidth.getHeight(context) / 1.9,
               width: heightwidth.getWidth(context) / 1.1,
@@ -104,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       blurRadius: 4,
                     ),
                   ],
-                  color: color_mode.spclColor.withOpacity(.45)),
+                  color: color_mode.primaryColor),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -158,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text("Don't have account?",
                         style: TextStyle(
-                          color: color_mode.unImportant
+                          color: color_mode.tertiaryColor
                         ),
                       ),
                       resize.horizontalSpace(10, context),
@@ -170,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Text('Sign Up',
                           style: TextStyle(
                               fontSize: resize.screenLayout(28, context),
-                              color: color_mode.secondaryColor2,
+                              color: color_mode.spclColor2,
                               fontWeight: FontWeight.bold
                           ),
                         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lm_hod/AppScreens/Hod/StaffRecruit.dart';
 import 'package:lm_hod/Models/Hod/HodModel.dart';
 import 'package:lm_hod/Providers/Hod%20provider/HodProvider.dart';
 import 'package:lm_hod/ReusableUtils/Colors.dart' as color_mode;
@@ -121,7 +122,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     description: "Add department staff",
                                     heading: "Staff Recruit",
                                     icon: FontAwesomeIcons.person,
-                                    onTap: () {}),
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (_)=>const StaffRecruit()));
+                                    }),
                                 homeContainer(
                                     context: context,
                                     description: "Dismiss staff from department",

@@ -9,7 +9,7 @@ Widget sidebarListTile({
 }){
   return ListTile(
     leading: Icon(
-      leadingIcon, color: color_mode.secondaryColor,),
+      leadingIcon, color: color_mode.spclColor2,),
     title: Text(title),
     textColor: color_mode.tertiaryColor,
     trailing: Icon(Icons.arrow_forward_ios_rounded,

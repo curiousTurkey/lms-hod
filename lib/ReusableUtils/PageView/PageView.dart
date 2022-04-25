@@ -16,6 +16,7 @@ class _ScrollPageViewState extends State<ScrollPageView> {
 
   late Timer _timer;
   late bool end;
+  double radius = 0;
   final PageController _pageController = PageController(initialPage: 0);
   @override
   void initState(){
@@ -51,6 +52,7 @@ class _ScrollPageViewState extends State<ScrollPageView> {
     'assets/ScrollableImages/2.jpg',
     'assets/ScrollableImages/s2.jpg',
     'assets/ScrollableImages/about1.jpg'];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -61,7 +63,7 @@ class _ScrollPageViewState extends State<ScrollPageView> {
           Container(
             padding: EdgeInsets.zero,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(0),
+              borderRadius: BorderRadius.circular(screenLayout(radius, context)),
               image: DecorationImage(
                   image: AssetImage(listImages[0]),
                   fit: BoxFit.cover

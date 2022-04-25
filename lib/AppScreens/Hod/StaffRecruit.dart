@@ -92,7 +92,7 @@ class _StaffRecruitState extends State<StaffRecruit> {
             color: color_mode.primaryColor,
             image: const DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage('assets/background/background.jpg'))),
+                image: AssetImage('assets/background/bg.jpg'))),
         height: double.maxFinite,
         width: double.maxFinite,
         child: SingleChildScrollView(
@@ -110,6 +110,7 @@ class _StaffRecruitState extends State<StaffRecruit> {
                       fontSize: resize.screenLayout(40, context)),
                 ),
               ),
+              resize.verticalSpace(20, context),
               SingleChildScrollView(
                 child: Container(
                   height: heightwidth.getHeight(context) / 1.9,
@@ -118,13 +119,13 @@ class _StaffRecruitState extends State<StaffRecruit> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft:
-                        Radius.circular(resize.screenLayout(40, context)),
+                        Radius.circular(resize.screenLayout(20, context)),
                         topRight:
-                        Radius.circular(resize.screenLayout(40, context)),
+                        Radius.circular(resize.screenLayout(20, context)),
                         bottomLeft:
-                        Radius.circular(resize.screenLayout(40, context)),
+                        Radius.circular(resize.screenLayout(20, context)),
                         bottomRight:
-                        Radius.circular(resize.screenLayout(40, context)),
+                        Radius.circular(resize.screenLayout(20, context)),
                       ),
                       boxShadow: const [
                         BoxShadow(
@@ -133,7 +134,7 @@ class _StaffRecruitState extends State<StaffRecruit> {
                           blurRadius: 4,
                         ),
                       ],
-                      color: color_mode.spclColor.withOpacity(.45)),
+                      color: color_mode.spclColor),
                   child: ListView(
                       padding: EdgeInsets.zero,
                       children: [
@@ -171,17 +172,16 @@ class _StaffRecruitState extends State<StaffRecruit> {
                         Row(
                           children: [
                             Checkbox(
-                              activeColor: color_mode.secondaryColor2,
+                              activeColor: color_mode.secondaryColor,
                                 hoverColor: color_mode.spclColor,
                                 checkColor: color_mode.primaryColor,
-
                                 value: isChecked, onChanged: (bool? value){
                               setState(() {
                                 isChecked = value!;
                                 print(isChecked);
                               });
                             }),
-                            SizedBox(width: resize.screenLayout(60, context),),
+                            SizedBox(width: resize.screenLayout(0, context),),
                             Text('Class Teacher',
                               style: TextStyle(
                                 color: color_mode.secondaryColor,
@@ -193,50 +193,74 @@ class _StaffRecruitState extends State<StaffRecruit> {
                         ),
                         Container(
                           height: resize.screenLayout(70, context),
-                          padding: EdgeInsets.all(resize.screenLayout(10, context)),
+                          padding: EdgeInsets.all(resize.screenLayout(20, context)),
                           decoration: const BoxDecoration(
                           ),
-                          child: DropdownButton<String>(
-                            focusColor: color_mode.secondaryColor2,
-                            enableFeedback: true,
-                            hint: const Text('Select Department'),
-                            isExpanded: true,
-                            isDense: true,
-                            items: listItem.map(buildMenuItem).toList(),
-                            value: value,
-                            onChanged: (val) {
-                              setState(() {
-                                value = val!;
-                                print(value);
-                              });
-                            }
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                                dropdownColor: color_mode.primaryColor,
+                                focusColor: color_mode.primaryColor,
+                                style: TextStyle(fontSize: resize.screenLayout(30, context),
+                                    color: color_mode.secondaryColor,
+                                    fontWeight: FontWeight.w600
+                                ),
+                                borderRadius: BorderRadius.circular(resize.screenLayout(20, context)),
+                                iconDisabledColor: Colors.grey,
+                                iconEnabledColor: color_mode.secondaryColor,
+                                icon: const Icon(Icons.arrow_downward_rounded),
+                              enableFeedback: true,
+                              hint: const Text('Select Department'),
+                              isExpanded: true,
+                              items: listItem.map(buildMenuItem).toList(),
+                              value: value,
+                              onChanged: (val) {
+                                setState(() {
+                                  value = val!;
+                                  print(value);
+                                });
+                              }
+                            ),
                           ),
                         ),
+                        resize.verticalSpace(20, context),
                         (isChecked==true)?Container(
                           height: resize.screenLayout(70, context),
-                          padding: EdgeInsets.all(resize.screenLayout(10, context)),
+                          padding: EdgeInsets.all(resize.screenLayout(20, context)),
                           decoration: const BoxDecoration(
                           ),
-                          child: DropdownButton<String>(
-                            focusColor: color_mode.secondaryColor2,
-                            enableFeedback: true,
-                            hint: const Text('Select Semester'),
-                            isExpanded: true,
-                            isDense: true,
-                            items: semList.map(buildMenuItem).toList(),
-                            value: semValue,
-                            onChanged: (sem) {
-                              setState(() {
-                                semValue = sem!;
-                                print(semValue);
-                              });
-                            },
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              dropdownColor: color_mode.primaryColor,
+                              focusColor: color_mode.primaryColor,
+                              style: TextStyle(fontSize: resize.screenLayout(30, context),
+                                  color: color_mode.secondaryColor,
+                                  fontWeight: FontWeight.w600
+                              ),
+                              borderRadius: BorderRadius.circular(resize.screenLayout(20, context)),
+                              iconDisabledColor: Colors.grey,
+                              iconEnabledColor: color_mode.secondaryColor,
+                              icon: const Icon(Icons.arrow_downward_rounded),
+                              enableFeedback: true,
+                              hint: const Text('Select Semester'),
+                              isExpanded: true,
+                              isDense: true,
+                              items: semList.map(buildMenuItem).toList(),
+                              value: semValue,
+                              onChanged: (sem) {
+                                setState(() {
+                                  semValue = sem!;
+                                  print(semValue);
+                                });
+                              },
+                            ),
                           ),
                         ):Container(),
+                        resize.verticalSpace(20, context),
                       ]
                   ),
                 ),
               ),
+              resize.verticalSpace(40, context),
               Container(
                   padding: EdgeInsets.symmetric(
                       vertical: resize.screenLayout(25, context),

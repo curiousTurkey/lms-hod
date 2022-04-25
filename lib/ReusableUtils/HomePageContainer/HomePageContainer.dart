@@ -15,16 +15,16 @@ InkWell homeContainer({
     customBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
             screenLayout(30, context))),
-    splashColor: color_mode.secondaryColor2.withOpacity(1),
+    splashColor: color_mode.spclColor2.withOpacity(.5),
     onTap: onTap,
     child: Container(
         height: screenLayout(270, context),
         width: screenLayout(310, context),
         decoration: BoxDecoration(
-          boxShadow: [BoxShadow(color: color_mode.spclColor.withOpacity(.5))],
+          boxShadow: [BoxShadow(color: color_mode.spclColor.withOpacity(.3))],
           borderRadius: BorderRadius.circular(
               screenLayout(30, context)),
-          color: color_mode.primaryColor.withOpacity(.5),
+          color: color_mode.primaryColor.withOpacity(.1),
         ),
         child: Padding(
           padding: EdgeInsets.all(screenLayout(25,context)),
@@ -32,7 +32,7 @@ InkWell homeContainer({
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              FaIcon(icon,color: color_mode.secondaryColor2,size: screenLayout(73, context),),
+              FaIcon(icon,color: color_mode.spclColor2.withOpacity(1),size: screenLayout(73, context),),
               Text(heading,
                 style: TextStyle(
                   fontSize: screenLayout(25,context),
