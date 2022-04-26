@@ -12,6 +12,7 @@ class StaffModel{
   late String userType;
   final String deptName;
   late String firstSignin;
+  int casualLeaveTaken;
 
   StaffModel({
 
@@ -26,6 +27,7 @@ class StaffModel{
     this.imageUrl = "null",
     this.userType = 'staff',
     this.firstSignin = "true",
+    this.casualLeaveTaken = 0
   });
 
   Map<String, dynamic> toJson() => {
@@ -39,7 +41,8 @@ class StaffModel{
     "imageurl" : imageUrl,
     "usertype" : userType,
     "dept" : deptName,
-    "firstsignin" : firstSignin
+    "firstsignin" : firstSignin,
+    "casualleavetaken" : casualLeaveTaken
 
   };
 
@@ -56,7 +59,8 @@ class StaffModel{
         imageUrl: snapShot['imageurl'],
         userType: snapShot['usertype'],
         deptName: snapShot['deptname'],
-        firstSignin: snapShot['firstsignin']
+        firstSignin: snapShot['firstsignin'],
+        casualLeaveTaken: snapShot['casualleavetaken'],
     );
   }
 
