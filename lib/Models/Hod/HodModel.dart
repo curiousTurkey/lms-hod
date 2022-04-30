@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 
 
 class HodModel {
@@ -16,28 +17,30 @@ class HodModel {
     required this.userId,
     required this.deptName,
     required this.contactNo,
-    this.imageUrl="notset",
-    this.userType="hod"});
+    this.imageUrl = "notset",
+    this.userType = "hod"});
 
-  Map<String , dynamic> toJson() => {
-    "name" : fullName,
-    "email" : emailAddress,
-    "userid" : userId,
-    "dept" : deptName,
-    "contact" : contactNo,
-    "usertype" : userType,
-    "imageurl" : imageUrl
-  };
- static HodModel fromSnap(DocumentSnapshot snapshot){
-   var snapShot = snapshot.data() as Map<String , dynamic>;
-   return HodModel(
-       deptName: snapShot['dept'],
-     fullName: snapShot['name'],
-     contactNo: snapShot['contact'],
-     userId: snapShot['userid'],
-     emailAddress: snapShot['email'],
-     userType: snapShot['usertype'],
-     imageUrl: snapShot['imageurl']
-   );
- }
+  Map<String, dynamic> toJson() =>
+      {
+        "name": fullName,
+        "email": emailAddress,
+        "userid": userId,
+        "dept": deptName,
+        "contact": contactNo,
+        "usertype": userType,
+        "imageurl": imageUrl
+      };
+
+  static HodModel fromSnap(DocumentSnapshot snapshot) {
+    var snapShot = snapshot.data() as Map<String, dynamic>;
+    return HodModel(
+        deptName: snapShot['dept'],
+        fullName: snapShot['name'],
+        contactNo: snapShot['contact'],
+        userId: snapShot['userid'],
+        emailAddress: snapShot['email'],
+        userType: snapShot['usertype'],
+        imageUrl: snapShot['imageurl']
+    );
+  }
 }

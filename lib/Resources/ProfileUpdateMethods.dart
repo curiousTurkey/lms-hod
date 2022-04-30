@@ -43,4 +43,22 @@ class ProfileUpdate{
       return finalResult;
     }
   }
+  Future<String> updateName({required String name}) async {
+    String finalResult = "Couldn't update contact number. Try again later.";
+    try{
+      FirebaseAuth _auth = FirebaseAuth.instance;
+      String _user = _auth.currentUser!.uid;
+      await FirebaseFirestore.instance.collection('users').doc(_user).update(
+          {
+            "name" : name
+          });
+      return finalResult = "Contact number updated successfully.";
+    }
+    catch(error){
+      finalResult = error.toString();
+      return finalResult;
+    }
+  }
 }
+
+

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lm_hod/AppScreens/Hod/Announcement.dart';
+import 'package:lm_hod/AppScreens/Hod/LeaveHistory.dart';
+import 'package:lm_hod/AppScreens/Hod/StaffDismissal.dart';
 import 'package:lm_hod/AppScreens/Hod/StaffRecruit.dart';
+import 'package:lm_hod/AppScreens/Hod/TodayLeaveApplicants.dart';
 import 'package:lm_hod/Models/Hod/HodModel.dart';
 import 'package:lm_hod/Providers/Hod%20provider/HodProvider.dart';
 import 'package:lm_hod/ReusableUtils/Colors.dart' as color_mode;
@@ -110,13 +114,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                     description: "Department announcement",
                                     heading: "Announcement",
                                     icon: FontAwesomeIcons.bell,
-                                    onTap: () {}),
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) => const Announcement()));
+                                    }),
                                 homeContainer(
                                     context: context,
                                     description: "Approve Teacher leave",
                                     heading: "Leave Approval",
                                     icon: FontAwesomeIcons.newspaper,
-                                    onTap: () {}),
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (_)=> const LeaveApplicants()));
+                                    }),
                                 homeContainer(
                                     context: context,
                                     description: "Add department staff",
@@ -130,19 +138,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                     description: "Dismiss staff from department",
                                     heading: "Staff Dismissal",
                                     icon: FontAwesomeIcons.crosshairs,
-                                    onTap: () {}),
-                                homeContainer(
-                                    context: context,
-                                    description: "List of leave applicants",
-                                    heading: "Leave Applicants",
-                                    icon: FontAwesomeIcons.peopleGroup,
-                                    onTap: () {}),
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) => const StaffDismissal()));
+                                    }),
                                 homeContainer(
                                     context: context,
                                     description: "Staff Leave History",
                                     heading: "Leave History",
                                     icon: FontAwesomeIcons.peopleGroup,
-                                    onTap: () {}),
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveHistory()));
+                                    }),
 
                               ],
                             ),

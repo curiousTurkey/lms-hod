@@ -92,7 +92,8 @@ class _StaffRecruitState extends State<StaffRecruit> {
             color: color_mode.primaryColor,
             image: const DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage('assets/background/bg.jpg'))),
+                image: AssetImage('assets/background/bg.jpg'))
+        ),
         height: double.maxFinite,
         width: double.maxFinite,
         child: SingleChildScrollView(
@@ -100,14 +101,19 @@ class _StaffRecruitState extends State<StaffRecruit> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               resize.verticalSpace(0, context),
-              Container(
-                margin: EdgeInsets.all(resize.screenLayout(10, context)),
-                child: Text(
-                  ' LMS - Staff  \nRecruitment',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: color_mode.secondaryColor,
-                      fontSize: resize.screenLayout(40, context)),
+              SingleChildScrollView(
+                physics: (MediaQuery.of(context).viewInsets.bottom != 0)
+                    ? const AlwaysScrollableScrollPhysics()
+                    : const NeverScrollableScrollPhysics(),
+                child: Container(
+                  margin: EdgeInsets.all(resize.screenLayout(10, context)),
+                  child: Text(
+                    ' LMS - Staff  \nRecruitment',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: color_mode.secondaryColor,
+                        fontSize: resize.screenLayout(40, context)),
+                  ),
                 ),
               ),
               resize.verticalSpace(20, context),

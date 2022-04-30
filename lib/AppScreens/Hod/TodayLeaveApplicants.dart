@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:lm_hod/ReusableUtils/HeightWidth.dart';
 import 'package:lm_hod/ReusableUtils/Responsive.dart' as resize;
 import 'package:lm_hod/ReusableUtils/Colors.dart' as color_mode;
@@ -36,7 +37,11 @@ class _LeaveApplicantsState extends State<LeaveApplicants> {
               return const Text('Something went wrong. Try again later.');
             }
             else if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: Text('Loading...'));
+              return Center(child: SpinKitFoldingCube(
+                color: color_mode.secondaryColor,
+                size: resize.screenLayout(80, context),
+                duration: const Duration(milliseconds: 1500),
+              ));
             }
             final data = snapshot.requireData;
             final length = snapshot.data!.size;
@@ -160,11 +165,11 @@ class _DetailPageState extends State<DetailPage> {
         }
       }
       );
-      DocumentSnapshot snapshot = await firestore.collection('users').doc(email).get();
+      DocumentSnapshot snapshot = await firestore.collection('users').doc(email).get(); //to get the casual leave taken from user document.
 
       finalResult = "success";
       if(finalResult == "success"){
-        double casual = (snapshot.data() as Map<String,dynamic>)['casualleavetaken'];
+        double casual = (snapshot.data() as Map<String,dynamic>)['casualleavetaken']; //getting number of casual leave from user document.
         double requestedDays = totalDays + casual;
         await firestore.collection('users').doc(email).update({'casualleavetaken' : requestedDays });
       }
