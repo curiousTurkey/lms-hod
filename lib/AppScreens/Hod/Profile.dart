@@ -123,6 +123,12 @@ class _ProfilePageState extends State<ProfilePage> {
   required TextEditingController textEditingController,
 }) async {
     String finalResult = await ProfileUpdate().updateName(name: _nameController.text);
+    if(finalResult == 'success'){
+      snackBar(content: 'Name updated updated successfully', duration: 1500, context: context);
+    }
+    else{
+      snackBar(content: finalResult, duration: 1500, context: context);
+    }
   }
   void updateContactNumber({
   required TextEditingController textEditingController,
@@ -144,7 +150,7 @@ class _ProfilePageState extends State<ProfilePage> {
     HodModel _hodModel = Provider
         .of<HodProvider>(context)
         .getHod;
-    String contactNumber = "";
+    String contactNumber = ""; // initialise to avoid null value at start
     String name = "";
     String userId = _hodModel.userId;
     final Stream<DocumentSnapshot<Map<String, dynamic>>> profile = FirebaseFirestore.instance.collection('users').doc(userId).snapshots();

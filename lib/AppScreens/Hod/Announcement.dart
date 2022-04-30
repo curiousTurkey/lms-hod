@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:lm_hod/ReusableUtils/Appbar.dart';
@@ -20,6 +21,8 @@ class _AnnouncementState extends State<Announcement> {
   final TextEditingController _subjectController = TextEditingController();
   final TextEditingController _bodyController = TextEditingController();
   bool isLoading = false;
+  bool isForStudents = false;
+  bool isForStaff = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +53,45 @@ class _AnnouncementState extends State<Announcement> {
                   labelText: 'Details',
                   hintText: 'Details of announcement'),
             ),
+            verticalSpace(100, context),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Students",
+                  style: TextStyle(
+                    fontSize: screenLayout(28, context),
+                    color: secondaryColor,
+                    fontWeight: FontWeight.w500
+                  ),
+                ),
+                CupertinoSwitch(
+                    value: isForStudents,
+                    activeColor: secondaryColor2,
+                    onChanged: (value){
+                  setState(() {
+                    isForStudents = value;
+                    print(isForStudents);
+                  });
+                }),
+                horizontalSpace(170, context),
+                Text("Staff",
+                  style: TextStyle(
+                      fontSize: screenLayout(28, context),
+                      color: secondaryColor,
+                      fontWeight: FontWeight.w500
+                  ),
+                ),
+                CupertinoSwitch(
+                    value: isForStaff,
+                    activeColor: secondaryColor2,
+                    onChanged: (value){
+                      setState(() {
+                        isForStaff = value;
+                        print(isForStaff);
+                      });
+                    }),
+              ],
+            ),
             verticalSpace(300, context),
             Container(
                 padding: EdgeInsets.symmetric(
@@ -62,6 +104,9 @@ class _AnnouncementState extends State<Announcement> {
                         _bodyController.text.isEmpty
                     ){
                       snackBar(content: 'Provide all fields', duration: 1500, context: context);
+                    }
+                    else if(isForStaff == false && isForStudents == false) {
+                      snackBar(content: 'Please choose an audience for announcement', duration: 2000, context: context);
                     }
                     else {
                     }
