@@ -1,14 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:lm_hod/Resources/AnnouncementMethods.dart';
 import 'package:lm_hod/ReusableUtils/Appbar.dart';
 import 'package:lm_hod/ReusableUtils/ExpandedTextForm.dart';
 import 'package:lm_hod/ReusableUtils/HeightWidth.dart';
 import 'package:lm_hod/ReusableUtils/Responsive.dart';
 import 'package:lm_hod/ReusableUtils/TextFormField.dart';
-
+import 'package:provider/provider.dart';
+import '../../Models/Hod/HodModel.dart';
+import '../../Providers/Hod provider/HodProvider.dart';
 import '../../ReusableUtils/Colors.dart';
 import '../../ReusableUtils/SnackBar.dart';
+import 'package:intl/intl.dart';
+
 
 class Announcement extends StatefulWidget {
   const Announcement({Key? key}) : super(key: key);
@@ -24,7 +29,50 @@ class _AnnouncementState extends State<Announcement> {
   bool isForStudents = false;
   bool isForStaff = false;
   @override
+  void dispose(){
+    super.dispose();
+    _subjectController.dispose();
+    _bodyController.dispose();
+  }
+  void hodAnnouncement ({
+      required String subject,
+      required String body,
+      required String isForStudents,
+      required String isForStaff,
+      required String date,
+      required String announcerImage,
+      required String announcerName,
+  }) async {
+    setState(() {
+      isLoading = true;
+    });
+    String finalResult = await AnnouncementMethods().announcementHod(
+        subject: subject,
+        body: body,
+        isStudent: isForStudents,
+        isTeacher: isForStaff,
+        date: date,
+        announcerImage: announcerImage,
+        announcerName: announcerName);
+    if(finalResult == "success") {
+      snackBar(content: "Announcement sent successfully", duration: 2000, context: context);
+    }
+    else{
+      snackBar(content: finalResult, duration: 2000, context: context);
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+  DateTime date = DateTime.now();
+  var format = DateFormat('yyyy-MM-dd');
+  @override
   Widget build(BuildContext context) {
+    HodModel _hodModel = Provider
+        .of<HodProvider>(context)
+        .getHod;
+    String formattedDate = format.format(date);
+    print(formattedDate);
     return Scaffold(
       appBar: appBar(context: context, title: 'Announcement'),
       body: SingleChildScrollView(
@@ -109,6 +157,14 @@ class _AnnouncementState extends State<Announcement> {
                       snackBar(content: 'Please choose an audience for announcement', duration: 2000, context: context);
                     }
                     else {
+                      hodAnnouncement(
+                          subject: _subjectController.text,
+                          body: _bodyController.text,
+                          isForStudents: isForStudents.toString(),
+                          isForStaff: isForStaff.toString(),
+                          date: formattedDate,
+                          announcerImage: _hodModel.imageUrl,
+                          announcerName: _hodModel.fullName);
                     }
                   },
                   elevation: 5.0,
