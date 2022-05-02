@@ -14,7 +14,6 @@ class LeaveApplicants extends StatefulWidget {
 }
 
 class _LeaveApplicantsState extends State<LeaveApplicants> {
-
   late int itemCount;
   final Stream<QuerySnapshot> leaveApplicants = FirebaseFirestore.instance.collection('leave').where('isapproved',isEqualTo: 'no').snapshots();
   @override
@@ -34,7 +33,7 @@ class _LeaveApplicantsState extends State<LeaveApplicants> {
           stream: leaveApplicants,
           builder: (_,AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return const Text('Something went wrong. Try again later.');
+              return const Center(child: Text('Something went wrong. Try again later.'));
             }
             else if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: SpinKitFoldingCube(
@@ -57,10 +56,22 @@ class _LeaveApplicantsState extends State<LeaveApplicants> {
                 String leaveReason = snapshot.data!.docs[index]["leavereason"];
                 String session1 = snapshot.data!.docs[index]["session1"];
                 String leavesub = snapshot.data!.docs[index]["leavesub"];
+                String docId = snapshot.data!.docs[index].id;
                 return ListTile(
                   minVerticalPadding: resize.screenLayout(20, context),
                   title: Text(name),
-                  onTap: () => navigateToDetail(name,dept,session2,session1,fromDate,toDate,email,leaveReason,leavesub),
+                  onTap: () => navigateToDetail(
+                      name,
+                      dept,
+                      session2,
+                      session1,
+                      fromDate,
+                      toDate,
+                      email,
+                      leaveReason,
+                      leavesub,
+                      docId
+                  ),
                 );
               },
             );
@@ -77,7 +88,9 @@ class _LeaveApplicantsState extends State<LeaveApplicants> {
       String toDate,
       String email,
       String leaveReason,
-      String leavesub) {
+      String leavesub,
+      String docId
+      ) {
       int days ;
       DateTime parseFromDate = DateTime.parse(fromDate);
       DateTime parseToDate = DateTime.parse(toDate);
@@ -91,7 +104,9 @@ class _LeaveApplicantsState extends State<LeaveApplicants> {
       email: email,
       leavereason: leaveReason,
       session1: session1,
-      leavesub: leavesub, days: days,
+      leavesub: leavesub,
+      days: days,
+      docId : docId
       
     )));
   }
@@ -108,6 +123,7 @@ class DetailPage extends StatefulWidget {
   final String toDate;
   final String dept;
   final int days ;
+  final String docId;
   const DetailPage({Key? key,
     required this.name,
     required this.email,
@@ -119,6 +135,7 @@ class DetailPage extends StatefulWidget {
     required this.toDate,
     required this.dept,
     required this.days,
+    required this.docId
   }) : super(key: key);
 
   @override
@@ -127,7 +144,6 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-
   @override
   void initState(){
     super.initState();
@@ -157,23 +173,15 @@ class _DetailPageState extends State<DetailPage> {
     String finalResult = "Some error occurred. Please check network connection or try again later.";
     try {
       snackBar(content: email, duration: 1500, context: context);
-      await firestore.collection('leave').where("email", isEqualTo: email).get().then((value) {
-        for(var element in value.docs){
-          element.reference.update({
-            'isapproved' : 'yes',
-          });
-        }
-      }
-      );
+      await FirebaseFirestore.instance.collection('leave').doc(widget.docId).update({"isapproved" : 'yes'});
       DocumentSnapshot snapshot = await firestore.collection('users').doc(email).get(); //to get the casual leave taken from user document.
-
       finalResult = "success";
       if(finalResult == "success"){
         double casual = (snapshot.data() as Map<String,dynamic>)['casualleavetaken']; //getting number of casual leave from user document.
         double requestedDays = totalDays + casual;
         await firestore.collection('users').doc(email).update({'casualleavetaken' : requestedDays });
       }
-      snackBar(content: totalDays.toString(), duration: 1500, context: context);
+      snackBar(content: 'Leave application approved successfully.', duration: 1500, context: context);
       return finalResult;
     } catch(error){
       return finalResult = error.toString();
@@ -365,7 +373,6 @@ class _DetailPageState extends State<DetailPage> {
                       backgroundColor: Colors.green,
                     ),
                       onPressed: (){
-                        snackBar(content: "clicked", duration: 1500, context: context);
                         leaveApproved(widget.email,widget.days,widget.session1,widget.session2,widget.fromDate,widget.toDate);
                       },
                       child: Text('Approve Leave',

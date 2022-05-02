@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 
 class LeaveModel {
   final String fullName;
@@ -6,7 +7,6 @@ class LeaveModel {
   final String session2;
   final String fromDate;
   final String toDate;
-  final int casualLeaveTaken;
   final String  email;
   final String leavereason;
   final String session1;
@@ -18,7 +18,6 @@ class LeaveModel {
     required this.session2,
     required this.fromDate,
     required this.toDate,
-    required this.casualLeaveTaken,
     required this.email,
     required this.leavereason,
     required this.session1,
@@ -26,14 +25,24 @@ class LeaveModel {
 });
 
   static LeaveModel fromJson(Map<String, dynamic> json) => LeaveModel(
-      fullName: json['name'],
+      fullName: json['fullname'],
       dept: json["dept"],
       session2: json['session2'],
       fromDate: json['fromdate'],
       toDate: json['todate'],
-      casualLeaveTaken: json['casualleavetaken'],
       email: json['email'],
       leavereason: json['leavereason'],
       session1: json['session1'],
       leavesub: json['leavesub']);
+
+  static LeaveModel fromJsonAsync(AsyncSnapshot<DocumentSnapshot<Map<String,dynamic>>> json) => LeaveModel(
+      fullName: json.data!['fullname'],
+      dept: json.data!["dept"],
+      session2: json.data!['session2'],
+      fromDate: json.data!['fromdate'],
+      toDate: json.data!['todate'],
+      email: json.data!['email'],
+      leavereason: json.data!['leavereason'],
+      session1: json.data!['session1'],
+      leavesub: json.data!['leavesub']);
 }

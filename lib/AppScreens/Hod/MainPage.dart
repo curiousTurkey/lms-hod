@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lm_hod/AppScreens/Hod/Announcement.dart';
+import 'package:lm_hod/AppScreens/Hod/LeaveHistory.dart';
 import 'package:lm_hod/AppScreens/Hod/Profile.dart';
 import 'package:lm_hod/Providers/Hod%20provider/HodProvider.dart';
 import 'package:lm_hod/ReusableUtils/Colors.dart' as color_mode;
+import 'package:lm_hod/ReusableUtils/Responsive.dart';
 import 'package:provider/provider.dart';
 import 'HomeScreen.dart';
 
@@ -55,7 +59,10 @@ class _MainPageState extends State<MainPage> {
           },
           children: const [
             HomeScreen(),
+            Announcement(),
+            LeaveHistory(),
             ProfilePage(),
+
                    ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -78,9 +85,21 @@ class _MainPageState extends State<MainPage> {
           showUnselectedLabels: false,
           items: [
             BottomNavigationBarItem(
-              icon: const Icon(Icons.home_outlined),
+              icon:  Icon(FontAwesomeIcons.house, size: screenLayout(30, context),),
               label: "Home",
-              activeIcon: Icon(Icons.home,color: color_mode.secondaryColor2,),
+              activeIcon: Icon(Icons.home,size: screenLayout(43, context),color: color_mode.secondaryColor2,),
+              backgroundColor: color_mode.primaryColor,
+            ),
+            BottomNavigationBarItem(
+                icon: const FaIcon(FontAwesomeIcons.microphoneLines),
+                label: 'Announcement',
+                activeIcon: FaIcon(FontAwesomeIcons.microphone , color: color_mode.secondaryColor2,),
+                backgroundColor: color_mode.primaryColor,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(FontAwesomeIcons.history),
+              label: "Leave History",
+              activeIcon:FaIcon(FontAwesomeIcons.history,color: color_mode.secondaryColor2,),
               backgroundColor: color_mode.primaryColor,
             ),
             BottomNavigationBarItem(

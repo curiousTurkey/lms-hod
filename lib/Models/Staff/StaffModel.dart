@@ -12,7 +12,7 @@ class StaffModel{
   late String userType;
   final String deptName;
   late String firstSignin;
-  int casualLeaveTaken;
+  double casualLeaveTaken;
 
   StaffModel({
 

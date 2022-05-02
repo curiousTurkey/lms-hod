@@ -213,42 +213,41 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: const ScrollPageView(),
                         ),
                         verticalSpace(150, context),
-                        Padding(
-                          padding: EdgeInsets.only(left: screenLayout(190, context)),
-                          child: Row(
-                            children: [
-                              Text(name,
-                                style: TextStyle(
-                                  color: color_mode.spclColor2,
-                                  fontSize: screenLayout(50, context),
-                                  fontWeight: FontWeight.w700,
-                                ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            horizontalSpace(60, context),
+                            Text(name,
+                              style: TextStyle(
+                                color: color_mode.spclColor2,
+                                fontSize: screenLayout(50, context),
+                                fontWeight: FontWeight.w700,
                               ),
-                              horizontalSpace(10, context),
-                              IconButton(
-                                  onPressed: () async {
-                                    await dialogBox(
+                            ),
+                            horizontalSpace(10, context),
+                            IconButton(
+                                onPressed: () async {
+                                  await dialogBox(
+                                    context,
+                                    'Name',
+                                    updateDetails(
                                       context,
+                                      _nameController,
+                                      const Icon(Icons.phone_android_rounded),
                                       'Name',
-                                      updateDetails(
-                                        context,
-                                        _nameController,
-                                        const Icon(Icons.phone_android_rounded),
-                                        'Name',
-                                        TextInputType.number,
-                                        'ex. John Cena',
-                                            () {
-                                            updateName(
-                                                textEditingController: _nameController);
-                                            Navigator.pop(context);
-                                        }
-                                      ),);
-                                  }, icon: Icon(
-                                Icons.edit, size: screenLayout(44, context),)),
-                            ],
-                          ),
+                                      TextInputType.name,
+                                      'ex. John Cena',
+                                          () {
+                                          updateName(
+                                              textEditingController: _nameController);
+                                          Navigator.pop(context);
+                                      }
+                                    ),);
+                                }, icon: Icon(
+                              Icons.edit, size: screenLayout(44, context),)),
+                          ],
                         ),
-                        verticalSpace(10, context),
+                        verticalSpace(00, context),
                         Text(_hodModel.deptName + " HoD",
                           style: TextStyle(
                             color: color_mode.unImportant,
@@ -317,8 +316,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
                     //profile image circle avatar
                     Positioned(
-                        left: getWidth(context) / 3.2,
-                        top: getHeight(context) / 3.7,
+                        left: getWidth(context) / screenLayout((getWidth(context) >= 390)?5:5.75, context),
+                        top: getHeight(context) / screenLayout(6.5, context),
                         child: GestureDetector(
                           onTap: () => _displayDialog(context),
                           child: CircleAvatar(

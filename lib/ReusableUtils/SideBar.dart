@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:lm_hod/AppScreens/Hod/Announcement.dart';
+import 'package:lm_hod/AppScreens/Hod/LeaveHistory.dart';
+import 'package:lm_hod/AppScreens/Hod/MainPage.dart';
+import 'package:lm_hod/AppScreens/Hod/Profile.dart';
+import 'package:lm_hod/AppScreens/Hod/StaffDismissal.dart';
 import 'package:lm_hod/AppScreens/Hod/StaffRecruit.dart';
 import 'package:lm_hod/AppScreens/Hod/TodayLeaveApplicants.dart';
 import 'package:lm_hod/Models/Hod/HodModel.dart';
 import 'package:lm_hod/Providers/Hod%20provider/HodProvider.dart';
-import 'package:lm_hod/ReusableUtils/LogoutDialog.dart';
+import 'package:lm_hod/ReusableUtils/Dialog.dart';
 import 'package:lm_hod/ReusableUtils/SidebarListTile.dart';
 import 'package:provider/provider.dart';
 import '../AppScreens/HOD/LoginScreen.dart';
-import '../AppScreens/HOD/MainPage.dart';
 import '../Resources/HodAuthMethods.dart';
 import 'Responsive.dart';
 import 'Side transition.dart';
@@ -86,41 +90,43 @@ class _SideBarState extends State<SideBar> {
               title: 'Home',
               onTap: (){
                 Navigator.pop(context);
-                Navigator.pushReplacement(context, CustomPageRouteSide(child: const MainPage()));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const MainPage()));
               }),
           sidebarListTile(
               leadingIcon: Icons.sms_failed_outlined,
               title: 'Announcement',
               onTap: (){
                 Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const Announcement()));
               }),
           sidebarListTile(
               leadingIcon: Icons.person_add_alt_outlined,
               title: 'Recruit Staff',
               onTap: (){
                 Navigator.pop(context);
-                Navigator.push(context, CustomPageRouteSide(child: const StaffRecruit())) ;
-
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const StaffRecruit()));
               }),
           sidebarListTile(
               title: 'Dismiss Staff',
               leadingIcon: Icons.do_disturb_on_outlined,
-              onTap: (){}),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const StaffDismissal()));
+              }),
           sidebarListTile(
               title: 'Leave Applicants',
               leadingIcon: Icons.newspaper_outlined,
               onTap: (){
                 Navigator.pop(context);
-                Navigator.push(context, CustomPageRouteSide(child: const LeaveApplicants()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const LeaveApplicants()));
               }),
           sidebarListTile(
               title: 'Staff Leave History',
               leadingIcon: Icons.history,
-              onTap: (){}),
-          sidebarListTile(
-              title: 'Profile',
-              leadingIcon: Icons.person_outline_outlined,
-              onTap: (){}),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, CustomPageRouteSide(child: const LeaveHistory()));
+              }),
           Divider(
             color: color_mode.unImportant,
             thickness: 1,
@@ -128,7 +134,8 @@ class _SideBarState extends State<SideBar> {
           sidebarListTile(
               title: 'Logout',
               leadingIcon: Icons.logout_outlined,
-              onTap: logoutDialog),
+              onTap: logoutDialog
+          ),
         ],
       ),
     );
