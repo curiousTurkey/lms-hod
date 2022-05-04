@@ -374,6 +374,7 @@ class _DetailPageState extends State<DetailPage> {
                     ),
                       onPressed: (){
                         leaveApproved(widget.email,widget.days,widget.session1,widget.session2,widget.fromDate,widget.toDate);
+                        Navigator.pop(context);
                       },
                       child: Text('Approve Leave',
                         style: TextStyle(color: color_mode.primaryColor,
