@@ -19,7 +19,7 @@ InkWell homeContainer({
     onTap: onTap,
     child: Container(
         height: screenLayout(270, context),
-        width: screenLayout(270, context),
+        width: screenLayout(250, context),
         decoration: BoxDecoration(
           boxShadow: [BoxShadow(color: color_mode.spclColor.withOpacity(.3))],
           borderRadius: BorderRadius.circular(

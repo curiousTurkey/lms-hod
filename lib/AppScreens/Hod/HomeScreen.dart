@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Wrap(
                               runSpacing: screenLayout(20, context),
-                              spacing: screenLayout((getWidth(context) >= 390)?70:40, context),
+                              spacing: screenLayout((getWidth(context) >= 390)?50:40, context),
                               children: [
                                 homeContainer(
                                     context: context,
