@@ -35,10 +35,10 @@ class AnnouncementModel {
     var snapShot = snapshot.data() as Map<String, dynamic> ;
     return AnnouncementModel(
         subject: snapShot["announcesub"],
-        body: snapShot["announcesub"],
+        body: snapShot["announcebody"],
         isStudent: snapShot["isForStudent"],
         isTeacher: snapShot["isForTeacher"],
-        date: snapShot["date"],
+        date: snapShot["announcedate"],
         announcerImage: snapShot["announcerImage"],
         announcerName: snapShot["announcername"],
     );

@@ -28,7 +28,7 @@ class _StaffRecruitState extends State<StaffRecruit> {
   bool isLoading = false;
   DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(value: item, child: Text(item),);
   final List<String> listItem = ['Select Department','Computer Applications'];
-  final List<String> semList = ['Select Semester','1st Sem','2nd Sem','3rd Sem','4th Sem','5th Sem','6th sem'];
+  final List<String> semList = ['Select Semester','1st Sem','2nd Sem','3rd Sem','4th Sem','5th Sem','6th Sem'];
   String value="Select Department";
   String semValue = "Select Semester";
   bool isChecked = false;
