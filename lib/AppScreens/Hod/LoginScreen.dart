@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:lm_hod/AppScreens/HOD/MainPage.dart';
 import 'package:lm_hod/AppScreens/HOD/SignupScreen.dart';
+import 'package:lm_hod/AppScreens/ResetPassword.dart';
 import 'package:lm_hod/Resources/HodAuthMethods.dart';
 import 'package:lm_hod/ReusableUtils/Responsive.dart' as resize;
 import 'package:lm_hod/ReusableUtils/Side%20transition.dart';
+import '../../ReusableUtils/Colors.dart';
+import '../../ReusableUtils/Responsive.dart';
 import '../../ReusableUtils/SnackBar.dart';
 import 'Package:lm_hod/ReusableUtils/Colors.dart' as color_mode;
 import 'package:lm_hod/ReusableUtils/HeightWidth.dart' as heightwidth;
@@ -180,7 +183,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       )
                     ],
                   ),
-                  SizedBox(height: resize.screenLayout(40, context),),
+                  SizedBox(height: resize.screenLayout(20, context),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap:(){
+                          Navigator.push(context, MaterialPageRoute(builder: (_) => const ResetPassword()));
+                        },
+                          child: Text('Forgot password?',
+                            style: TextStyle(
+                              color: spclColor2,
+                              fontSize: screenLayout(28, context),
+                              fontWeight: FontWeight.w700,
+                            ),
+                          )),
+                    ],
+                  ),
                   
                 ],
               ),
