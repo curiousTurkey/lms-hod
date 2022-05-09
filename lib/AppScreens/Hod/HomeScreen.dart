@@ -5,6 +5,7 @@ import 'package:lm_hod/AppScreens/Hod/Announcement.dart';
 import 'package:lm_hod/AppScreens/Hod/LeaveHistory.dart';
 import 'package:lm_hod/AppScreens/Hod/StaffDismissal.dart';
 import 'package:lm_hod/AppScreens/Hod/StaffRecruit.dart';
+import 'package:lm_hod/AppScreens/Hod/TimeTable.dart';
 import 'package:lm_hod/AppScreens/Hod/TodayLeaveApplicants.dart';
 import 'package:lm_hod/Models/Hod/HodModel.dart';
 import 'package:lm_hod/Providers/Hod%20provider/HodProvider.dart';
@@ -140,6 +141,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     icon: FontAwesomeIcons.crosshairs,
                                     onTap: () {
                                       Navigator.push(context, MaterialPageRoute(builder: (_) => const StaffDismissal()));
+                                    }),
+                                homeContainer(
+                                    context: context,
+                                    description: "View today's timetable",
+                                    heading: "Time Table",
+                                    icon: FontAwesomeIcons.calendarCheck,
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) => const ViewTimeTable()));
                                     }),
                                 homeContainer(
                                     context: context,

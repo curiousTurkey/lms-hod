@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lm_hod/AppScreens/Hod/Announcement.dart';
 import 'package:lm_hod/AppScreens/Hod/LeaveHistory.dart';
 import 'package:lm_hod/AppScreens/Hod/MainPage.dart';
@@ -12,6 +13,7 @@ import 'package:lm_hod/ReusableUtils/Dialog.dart';
 import 'package:lm_hod/ReusableUtils/SidebarListTile.dart';
 import 'package:provider/provider.dart';
 import '../AppScreens/HOD/LoginScreen.dart';
+import '../AppScreens/Hod/TimeTable.dart';
 import '../Resources/HodAuthMethods.dart';
 import 'Responsive.dart';
 import 'Side transition.dart';
@@ -98,6 +100,13 @@ class _SideBarState extends State<SideBar> {
               onTap: (){
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_) => const Announcement()));
+              }),
+          sidebarListTile(
+              title: "Today's Time Table",
+              leadingIcon: FontAwesomeIcons.tableList,
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, CustomPageRouteSide(child: const ViewTimeTable()));
               }),
           sidebarListTile(
               leadingIcon: Icons.person_add_alt_outlined,

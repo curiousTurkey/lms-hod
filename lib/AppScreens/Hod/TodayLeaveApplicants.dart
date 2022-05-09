@@ -172,7 +172,7 @@ class _DetailPageState extends State<DetailPage> {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     String finalResult = "Some error occurred. Please check network connection or try again later.";
     try {
-      snackBar(content: email, duration: 1500, context: context);
+
       await FirebaseFirestore.instance.collection('leave').doc(widget.docId).update({"isapproved" : 'yes'});
       DocumentSnapshot snapshot = await firestore.collection('users').doc(email).get(); //to get the casual leave taken from user document.
       finalResult = "success";
@@ -193,12 +193,7 @@ class _DetailPageState extends State<DetailPage> {
     String finalResult = "Some error occurred. Please check network connection or try again later.";
     try {
       snackBar(content: email, duration: 1500, context: context);
-      await firestore.collection('leave').where("email", isEqualTo: email).get().then((value) {
-        for(var element in value.docs){
-          element.reference.update({'isapproved' : 'rejected'});
-        }
-      }
-      );
+      await firestore.collection('leave').doc(widget.docId).update({'isapproved' : 'Rejected'});
       finalResult = "success";
       snackBar(content: finalResult, duration: 1500, context: context);
       return finalResult;
