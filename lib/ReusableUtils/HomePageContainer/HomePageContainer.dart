@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lm_hod/ReusableUtils/Colors.dart' as color_mode;
 import 'package:lm_hod/ReusableUtils/Responsive.dart';
 
+import '../HeightWidth.dart';
+
 
 InkWell homeContainer({
   required BuildContext context,
@@ -11,6 +13,7 @@ InkWell homeContainer({
   required IconData icon,
   required VoidCallback onTap,
 }) {
+  double containerWidth = getWidth(context)/2 - screenLayout(20, context);
   return InkWell(
     customBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
@@ -19,7 +22,7 @@ InkWell homeContainer({
     onTap: onTap,
     child: Container(
         height: screenLayout(270, context),
-        width: screenLayout(250, context),
+        width: containerWidth,
         decoration: BoxDecoration(
           boxShadow: [BoxShadow(color: color_mode.spclColor.withOpacity(.3))],
           borderRadius: BorderRadius.circular(
