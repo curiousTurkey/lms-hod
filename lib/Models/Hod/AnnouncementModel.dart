@@ -8,6 +8,7 @@ class AnnouncementModel {
   final String date;
   final String announcerImage;
   final String announcerName;
+  final String announcer;
 
   AnnouncementModel({
   required this.subject,
@@ -17,6 +18,7 @@ class AnnouncementModel {
   required this.date,
   required this.announcerImage,
   required this.announcerName,
+    this.announcer = 'hod'
 });
 
   Map<String, dynamic> toJson() =>
@@ -28,7 +30,7 @@ class AnnouncementModel {
         "isForStudent" : isStudent,
         "announcebody" : body,
         "announcesub" : subject,
-
+        "announcer" : announcer
       };
 
   static AnnouncementModel fromSnap(DocumentSnapshot snapshot) {
@@ -41,6 +43,7 @@ class AnnouncementModel {
         date: snapShot["announcedate"],
         announcerImage: snapShot["announcerImage"],
         announcerName: snapShot["announcername"],
+      announcer: snapShot['announcer'],
     );
   }
 }
