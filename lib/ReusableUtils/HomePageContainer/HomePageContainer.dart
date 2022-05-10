@@ -13,7 +13,7 @@ InkWell homeContainer({
   required IconData icon,
   required VoidCallback onTap,
 }) {
-  double containerWidth = getWidth(context)/2 - screenLayout(20, context);
+  double containerWidth = getWidth(context)/2 - screenLayout(40, context);
   return InkWell(
     customBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
